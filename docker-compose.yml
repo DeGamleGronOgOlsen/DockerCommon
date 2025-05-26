@@ -1,16 +1,17 @@
 services:
   frontend-svc:
+    container_name: frontend-svc
     image: frontend-svc:latest
     build:
       context: ../FrontendService/FrontendServiceAPI
       dockerfile: Dockerfile
-    container_name: frontend-svc
     ports:
       - "8080:80"
     networks:
       - auctionnet
 
   mongodb:
+    container_name: mongodb
     image: mongo:latest
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -79,6 +80,7 @@ services:
       - auctionnet
   
   loki:
+    container_name: loki
     image: grafana/loki
     ports:
       - "3100:3100"
@@ -87,6 +89,7 @@ services:
       - auctionnet
   
   grafana:
+    container_name: grafana
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
